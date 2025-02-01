@@ -6,12 +6,28 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseAuth
+
+class FirebaseManager: NSObject {
+    let auth: Auth
+    
+    static let shared = FirebaseManager()
+    
+    override init() {
+        FirebaseApp.configure()
+        
+        self.auth = Auth.auth()
+        
+        super.init( )
+    }
+}
 
 struct LoginView: View {
     
     @State var isLoginMode = false
     @State var email = ""
-    @State var Password = ""
+    @State var password = ""
     
     
     var body: some View {
@@ -42,7 +58,7 @@ struct LoginView: View {
                             .keyboardType(.emailAddress)
                             .autocapitalization(.none)
  
-                        SecureField("Password", text: $Password)
+                        SecureField("Password", text: $password)
 
                     }
                     .padding(12)
@@ -78,8 +94,35 @@ struct LoginView: View {
     private func handleAction() {
         if (isLoginMode) {
             print("Should log into Firebas with existing credentials")
+            loginUser()
         } else {
+            createNewAccount()
             print("Register a new account inside of Firebase Auth and then store image in Storage somehow...")
+        }
+    }
+    
+    private func loginUser() {
+        FirebaseManager.shared.auth.signIn(withEmail: email, password: password) {
+            result, err in
+            
+            if let err = err {
+                print("Failed to login  a user", err)
+                return
+            }
+            
+            print("SuccessFullly logged user: \(result?.user.uid ?? "")")
+        }
+    }
+    
+    private func createNewAccount() {
+        FirebaseManager.shared.auth.createUser(withEmail: email, password: password) {
+            result, err in
+            if let err = err {
+                print("Failed to create a user", err)
+                return
+            }
+            
+            print("SuccessFullly created a new user: \(result?.user.uid ?? "")")
         }
     }
 }
