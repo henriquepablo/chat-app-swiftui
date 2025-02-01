@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		13E53FC72D4E629E00E89EB9 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 13E53FC62D4E629400E89EB9 /* .gitignore */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		13E53FAA2D4E623C00E89EB9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +31,7 @@
 		13E53F992D4E623B00E89EB9 /* SwiftUIChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUIChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13E53FA92D4E623C00E89EB9 /* SwiftUIChatAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftUIChatAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		13E53FB32D4E623C00E89EB9 /* SwiftUIChatAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftUIChatAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		13E53FC62D4E629400E89EB9 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -75,6 +80,7 @@
 		13E53F902D4E623B00E89EB9 = {
 			isa = PBXGroup;
 			children = (
+				13E53FC62D4E629400E89EB9 /* .gitignore */,
 				13E53F9B2D4E623B00E89EB9 /* SwiftUIChatApp */,
 				13E53FAC2D4E623C00E89EB9 /* SwiftUIChatAppTests */,
 				13E53FB62D4E623C00E89EB9 /* SwiftUIChatAppUITests */,
@@ -212,6 +218,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13E53FC72D4E629E00E89EB9 /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
