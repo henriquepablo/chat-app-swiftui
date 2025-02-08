@@ -9,10 +9,12 @@ import SwiftUI
 import Firebase
 import FirebaseAuth
 import FirebaseStorage
+import FirebaseFirestore
 
 class FirebaseManager: NSObject {
     let auth: Auth
     let storage: Storage
+    let firestore: Firestore
     
     static let shared = FirebaseManager()
     
@@ -21,6 +23,7 @@ class FirebaseManager: NSObject {
         
         self.auth = Auth.auth()
         self.storage = Storage.storage()
+        self.firestore = Firestore.firestore()
         
         super.init( )
     }
@@ -144,7 +147,20 @@ struct LoginView: View {
             
             print("SuccessFullly created a new user: \(result?.user.uid ?? "")")
             
+            self.storeUserInformation()
             //persistImageToStorage()
+        }
+    }
+    
+    private func storeUserInformation() {
+        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
+        let userData = ["email": self.email, "uid": uid]
+        FirebaseManager.shared.firestore.collection("users").document(uid).setData(userData) { err in
+                if let err = err {
+                print("Failed to add user data to firestore: ", err)
+                return
+            }
+            print("Success ")
         }
     }
     
